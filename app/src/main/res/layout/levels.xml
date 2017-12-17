@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sky"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Levels">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/home1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="30dp"
+            android:background="#00ffffff"
+            android:src="@drawable/h1" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/levelsOfDiffculty"
+            android:textColor="#ffffff"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/elativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/myImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/small_wood"
+            android:layout_above="@+id/myImageView1"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:id="@+id/easy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="13dp"
+            android:gravity="center"
+            android:text="@string/easy"
+            android:textColor="#ffffff"
+            android:textSize="40sp"
+            android:layout_alignTop="@+id/myImageView"
+            android:layout_alignStart="@+id/advance" />
+
+        <ImageView
+            android:id="@+id/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/e"
+            android:layout_alignTop="@+id/easy"
+            android:layout_alignStart="@+id/yellow" />
+
+
+        <ImageView
+            android:id="@+id/myImageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/small_wood" />
+
+        <Button
+            android:id="@+id/meduim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:gravity="center"
+            android:text="@string/meduim"
+            android:textColor="#ffffff"
+            android:textSize="40sp"
+            android:layout_alignBottom="@+id/yellow"
+            android:layout_alignStart="@+id/advance" />
+
+        <ImageView
+            android:id="@+id/yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/m"
+            android:layout_marginStart="33dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+
+        <ImageView
+            android:id="@+id/myImageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="81dp"
+            android:src="@drawable/small_wood" />
+
+        <Button
+            android:id="@+id/advance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/myImageView2"
+            android:layout_marginEnd="119dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/difficult"
+            android:textColor="#ffffff"
+            android:textSize="40sp" />
+
+        <ImageView
+            android:id="@+id/red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/d"
+            android:layout_alignTop="@+id/advance"
+            android:layout_alignEnd="@+id/yellow" />
+
+    </RelativeLayout>
+</LinearLayout>
