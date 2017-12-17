@@ -65,8 +65,14 @@ public class ColoringPage extends Activity implements OnClickListener {
             @Override
 
             public void onClick(View v) {
+
+                RelativeLayout view = (RelativeLayout) findViewById(R.id.ColoredPic);
+                view.setDrawingCacheEnabled(true);
+                view.buildDrawingCache();
+                Bitmap photocoloring = view.getDrawingCache();
+
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                photocoloring.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte imageInByte[] = stream.toByteArray();
                 colorYourPhotoDbHelper.insertImage(imageInByte);
                 Log.i("images", "inserted to database successfully");
