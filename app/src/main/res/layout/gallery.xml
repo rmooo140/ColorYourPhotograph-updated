@@ -16,31 +16,31 @@
             android:id="@+id/img"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp" />
 
         <ImageButton
             android:id="@+id/brush"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="#00ffffff"
-            android:src="@drawable/brush"
             android:layout_alignTop="@+id/drop"
-            android:layout_toEndOf="@+id/drop" />
+            android:layout_gravity="center_horizontal"
+            android:layout_toEndOf="@+id/drop"
+            android:background="#00ffffff"
+            android:src="@drawable/brush" />
 
         <ImageButton
             android:id="@+id/drop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="#00ffffff"
-            android:src="@drawable/drop"
             android:layout_alignBottom="@+id/img"
             android:layout_alignStart="@+id/img"
-            android:layout_marginStart="59dp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="59dp"
+            android:background="#00ffffff"
+            android:src="@drawable/drop" />
 
     </RelativeLayout>
 </LinearLayout>

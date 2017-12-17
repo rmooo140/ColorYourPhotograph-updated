@@ -26,29 +26,6 @@ public class Gallery extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maingallery);
 
-//image views implementation
-        /*
-        photo = this.getIntent().getParcelableExtra("Bitmap2");
-        ImageView coloringPage = (ImageView) findViewById(R.id.brush);
-        coloringPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(Gallery.this,ColoringPage.class);
-                intent.putExtra("Bitmap", photo );
-                startActivity(intent);
-            }
-        });
-        ImageView deleteImage = (ImageView) findViewById(R.id.drop);
-        deleteImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DbHelper.DeleteImage(photo);
-                Log.i("adapter", " image deleted from database successfully");
-            }
-        });
-*/
-
         ArrayList<byte[]> list = DbHelper.retrieveAllImages();
         for (int i = 0; i < list.size(); i++) {
 
@@ -57,6 +34,8 @@ public class Gallery extends Activity {
 
         }
         ListView listView = (ListView) findViewById(R.id.list);
+        View emptyView = findViewById(R.id.empty_view);
+        listView.setEmptyView(emptyView);
 
         adapter = new ImageAdapter(this, imageArry);
         listView.setAdapter(adapter);

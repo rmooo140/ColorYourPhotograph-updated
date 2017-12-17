@@ -1,9 +1,11 @@
 package com.example.almohanna.coloryourphotograph;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +56,6 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(context, ColoringPage.class);
-                //intent.putExtra("Bitmap2", imgBitmap);
                 intent.putExtra("Bitmap2", (Bitmap) v.getTag());
                 context.startActivity(intent);
                 //Log.i("adapter", " numbers of images befor delete " + getCount());
@@ -69,9 +70,10 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
             @Override
             public void onClick(View v) {
                 //(Bitmap) v.getTag()
-                DbHelper.DeleteImage((long) v.getId());
-                images.remove(getItem(position));
-                notifyDataSetChanged();
+                //DbHelper.DeleteImage((long) v.getId());
+                showDeleteConfirmationDialog((long) v.getId(),getItem(position));
+                //images.remove(getItem(position));
+                //notifyDataSetChanged();
                 Log.i("adapter", " image deleted from database successfully");
                 //Log.i("adapter", " numbers of images after delete " + getCount());
                 count = DbHelper.getImagesCount();
@@ -92,6 +94,32 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
 
     public byte[] getItem(int position) {
         return images.get(position);
+    }
+
+
+    private void showDeleteConfirmationDialog(final long itemId, final byte [] position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("هل انت متاكد من عملية الحذف؟");
+        builder.setTitle("حذف صورة!");
+        builder.setIcon(R.drawable.delete);
+        builder.setPositiveButton("حذف", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                DbHelper.DeleteImage(itemId);
+                images.remove(position);
+                notifyDataSetChanged();
+                //finish();
+            }
+        });
+        builder.setNegativeButton("الغاء", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
 
