@@ -43,7 +43,7 @@ public class Gallery extends Activity {
         ArrayList<byte[]> list = DbHelper.retrieveAllImages();
         for (int i = 0; i < list.size(); i++) {
 
-            byte[] img = list.get(i); 
+            byte[] img = list.get(i);
             imageArry.add(img);
 
         }
