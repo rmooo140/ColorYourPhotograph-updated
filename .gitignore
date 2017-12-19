@@ -3,6 +3,9 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/.idea
 .DS_Store
+/openCVLibrary330/build/
 /build
 /captures
+.externalNativeBuild
