@@ -26,7 +26,8 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
     Context context;
     ArrayList<byte[]> images;
     int count;
-    //Boolean isDeleted= false;
+    Gallery display_adapter;
+    //ArrayList<byte[]> imageArry = new ArrayList<byte[]>();
     ColorYourPhotoDbHelper DbHelper = new ColorYourPhotoDbHelper(this.getContext());
 
     public ImageAdapter(Context context, ArrayList<byte[]> images) {
@@ -71,9 +72,9 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
             public void onClick(View v) {
                 //(Bitmap) v.getTag()
                 //DbHelper.DeleteImage((long) v.getId());
-                showDeleteConfirmationDialog((long) v.getId(),getItem(position));
-                //images.remove(getItem(position));
-                //notifyDataSetChanged();
+                showDeleteConfirmationDialog((long) v.getId());
+                images.remove(getItem(position));
+                notifyDataSetChanged();
                 Log.i("adapter", " image deleted from database successfully");
                 //Log.i("adapter", " numbers of images after delete " + getCount());
                 count = DbHelper.getImagesCount();
@@ -97,7 +98,7 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
     }
 
 
-    private void showDeleteConfirmationDialog(final long itemId, final byte [] position) {
+    private void showDeleteConfirmationDialog(final long itemId){ //final byte[] position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("هل انت متاكد من عملية الحذف؟");
         builder.setTitle("حذف صورة!");
@@ -106,9 +107,24 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
             public void onClick(DialogInterface dialog, int id) {
 
                 DbHelper.DeleteImage(itemId);
-                images.remove(position);
+                //images.remove(position);
+                display_adapter.displayNew();
+
+                /*for (int i = 0; i < list.size(); i++) {
+
+                    byte[] img = list.get(i);
+                    imageArry.add(img);
+
+                }
+                ListView listView = (ListView) findViewById(R.id.list);
+                View emptyView = findViewById(R.id.empty_view);
+                listView.setEmptyView(emptyView);
+
+                ImageAdapter adapter = new ImageAdapter(context, imageArry);
+                listView.setAdapter(adapter);
                 notifyDataSetChanged();
                 //finish();
+                */
             }
         });
         builder.setNegativeButton("الغاء", new DialogInterface.OnClickListener() {

@@ -2,6 +2,7 @@
     <string name="app_name">ColorYourPhotograph</string>
     <string name="logo">logo</string>
     <string name="levelsOfDiffculty">مستوى الصعوبة</string>
+    <string name="name">لون تصويرك</string>
     <string name="createColoringPage">انشاء صفحة تلوين</string>
     <string name="gallary">معرض الصور</string>
     <string name="confirmation">هل هذا ماتريده ؟</string>

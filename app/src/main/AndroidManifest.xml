@@ -8,76 +8,32 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/createColoringPage"
+        android:label="@string/name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".Home" android:configChanges="orientation|screenSize">
+
+        //android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".CameraOpen" android:configChanges="orientation|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".CameraOpen" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".Gallery" />
+
+        <activity android:name=".ColoringPage" />
+
+        <activity android:name=".Confirmation"  />
+
+        <activity android:name=".Levels" />
+
+        <activity android:name=".Threshed"  >
         </activity>
-
-        <activity android:name=".Gallery" android:configChanges="orientation|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".ColoringPage" android:configChanges="orientation|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".Confirmation" android:configChanges="orientation|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".Levels" android:configChanges="orientation|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".Threshed" android:configChanges="orientation|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-
     </application>
-
-
-
-
-
-
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
     <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
