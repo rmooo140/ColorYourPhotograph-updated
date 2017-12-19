@@ -26,6 +26,20 @@ public class Gallery extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maingallery);
 
+        display();
+
+        // home button
+        ImageButton home = (ImageButton) findViewById(R.id.home1);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homeIntent = new Intent(Gallery.this, Home.class);
+                startActivity(homeIntent);
+            }
+        });
+    }
+
+    public void display() {
         ArrayList<byte[]> list = DbHelper.retrieveAllImages();
         for (int i = 0; i < list.size(); i++) {
 
@@ -40,14 +54,25 @@ public class Gallery extends Activity {
         adapter = new ImageAdapter(this, imageArry);
         listView.setAdapter(adapter);
 
-        // home button
-        ImageButton home = (ImageButton) findViewById(R.id.home1);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homeIntent = new Intent(Gallery.this, Home.class);
-                startActivity(homeIntent);
-            }
-        });
+    }
+
+
+    public void displayNew() {
+        ArrayList<byte[]> list1 = DbHelper.retrieveAllImages();
+        ArrayList<byte[]> imageArryAfterDeleted = new ArrayList<byte[]>();
+
+        for (int i = 0; i < list1.size(); i++) {
+
+            byte[] img = list1.get(i);
+            imageArryAfterDeleted.add(img);
+
+        }
+        ListView listView = (ListView) findViewById(R.id.list);
+        View emptyView = findViewById(R.id.empty_view);
+        listView.setEmptyView(emptyView);
+
+        ImageAdapter a = new ImageAdapter(this, imageArryAfterDeleted);
+        listView.setAdapter(a);
+
     }
 }
