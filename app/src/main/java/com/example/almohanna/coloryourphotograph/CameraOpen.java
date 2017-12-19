@@ -102,7 +102,9 @@ public class CameraOpen extends AppCompatActivity {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 invoked();
             } else {
-                Toast.makeText(this, "fali", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "قم بالسماح بفتح الكاميرا لتستطيع التقاط صورة", Toast.LENGTH_LONG).show();
+                Intent homeIntent = new Intent(CameraOpen.this, Home.class);
+                startActivity(homeIntent);
             }
         }
 

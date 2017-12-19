@@ -60,8 +60,6 @@ public class ColoringPage extends Activity implements OnClickListener {
         viewPhoto = (ImageView) findViewById(R.id.img);
         viewPhoto.setImageBitmap(photo);
 
-        viewPhoto.setBackgroundColor(Color.WHITE);
-
 
         // home button
         ImageButton home = (ImageButton) findViewById(R.id.home1);
