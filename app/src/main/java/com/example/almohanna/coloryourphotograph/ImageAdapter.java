@@ -17,24 +17,25 @@ import com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoDbHelper
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Reem on 23-Nov-17.
  */
 
-public class ImageAdapter extends ArrayAdapter<byte[]> {
+public class ImageAdapter extends ArrayAdapter<ImageModel> {
 
     Context context;
-    ArrayList<byte[]> images;
+    ArrayList<ImageModel> images;
     int count;
     Gallery display_adapter;
     //ArrayList<byte[]> imageArry = new ArrayList<byte[]>();
     ColorYourPhotoDbHelper DbHelper = new ColorYourPhotoDbHelper(this.getContext());
 
-    public ImageAdapter(Context context, ArrayList<byte[]> images) {
+    public ImageAdapter(Context context, List<ImageModel> images) {
         super(context, 0, images);
         this.context = context;
-        this.images = images;
+        this.images = new ArrayList<>(images);
     }
 
     //retriva all images
@@ -46,7 +47,7 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
         }
 
         ImageView imgView = (ImageView) listItemView.findViewById(R.id.img);
-        byte[] retrivedImage = images.get(position);
+        byte[] retrivedImage = images.get(position).getImage();
         //    imgBitmap = BitmapFactory.decodeByteArray(retrivedImage, 0, retrivedImage.length);
         //  imgView.setImageBitmap(imgBitmap);
         Bitmap tempBitmap = BitmapFactory.decodeByteArray(retrivedImage, 0, retrivedImage.length);
@@ -75,17 +76,10 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
         deleteImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //(Bitmap) v.getTag()
-                //DbHelper.DeleteImage((long) v.getId());
-                showDeleteConfirmationDialog((long) v.getId());
-                images.remove(getItem(position));
-                notifyDataSetChanged();
+                showDeleteConfirmationDialog(getItem(position));
                 Log.i("adapter", " image deleted from database successfully");
-                //Log.i("adapter", " numbers of images after delete " + getCount());
-                count = DbHelper.getImagesCount();
 
                 Log.i("adapter", " numbers of images after delete " + count);
-                //Log.i("adapter", " row " + isDeleted);
 
             }
         });
@@ -98,12 +92,12 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
 
     }
 
-    public byte[] getItem(int position) {
+    public ImageModel getItem(int position) {
         return images.get(position);
     }
 
 
-    private void showDeleteConfirmationDialog(final long itemId){ //final byte[] position) {
+    private void showDeleteConfirmationDialog(final ImageModel imageModel){ //final byte[] position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("هل انت متاكد من عملية الحذف؟");
         builder.setTitle("حذف صورة!");
@@ -111,25 +105,12 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
         builder.setPositiveButton("حذف", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
-                DbHelper.DeleteImage(itemId);
-                //images.remove(position);
-                display_adapter.displayNew();
-
-                /*for (int i = 0; i < list.size(); i++) {
-
-                    byte[] img = list.get(i);
-                    imageArry.add(img);
-
-                }
-                ListView listView = (ListView) findViewById(R.id.list);
-                View emptyView = findViewById(R.id.empty_view);
-                listView.setEmptyView(emptyView);
-
-                ImageAdapter adapter = new ImageAdapter(context, imageArry);
-                listView.setAdapter(adapter);
+                images.remove(imageModel);
                 notifyDataSetChanged();
-                //finish();
-                */
+                DbHelper.DeleteImage(imageModel.getImageId());
+                count = DbHelper.getImagesCount();
+                notifyDataSetChanged();
+
             }
         });
         builder.setNegativeButton("الغاء", new DialogInterface.OnClickListener() {

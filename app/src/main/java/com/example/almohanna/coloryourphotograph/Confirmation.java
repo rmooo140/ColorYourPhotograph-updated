@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import java.io.ByteArrayOutputStream;
 
 public class Confirmation extends Activity {
     static Bitmap photo;
@@ -26,7 +27,10 @@ public class Confirmation extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(Confirmation.this,ColoringPage.class);
-                intent.putExtra("Bitmap2",photo);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] bytes = stream.toByteArray();
+                intent.putExtra("Bitmap2",bytes);
                 startActivity(intent);
 
             }

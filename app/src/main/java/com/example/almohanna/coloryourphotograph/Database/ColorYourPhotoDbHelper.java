@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.almohanna.coloryourphotograph.ImageModel;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoContract.DifficultyEntry;
 import static com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoContract.GalleryEntry;
@@ -23,7 +25,7 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ColorYourPhoto.db";
     private static final int DATABASE_VERSION = 6;
-    private ArrayList<byte[]> listofImages = new ArrayList<byte[]>();
+    private ArrayList<ImageModel> listofImages = new ArrayList<>();
 
     public ColorYourPhotoDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -111,7 +113,7 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public ArrayList<byte[]> retrieveAllImages() {
+    public List<ImageModel> retrieveAllImages() {
         SQLiteDatabase db = this.getWritableDatabase();
         //String[] projection = {GalleryEntry.COLUMN_COLORING_PAGE,};
         Cursor cursor = db.query(
@@ -125,16 +127,14 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
         );
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                ArrayList<String> id = new ArrayList<String>();
-
                 do {
                     byte[] blob = cursor.getBlob(cursor.getColumnIndex(GalleryEntry.COLUMN_COLORING_PAGE));
                     int idd= cursor.getInt(cursor.getColumnIndex(GalleryEntry._ID));
                     String columnId= String.valueOf(idd);
-                    id.add(columnId);
-                    Log.i("database", " id: " + id);
 
-                    listofImages.add(blob);
+                    Log.i("database", " id: " + columnId);
+
+                    listofImages.add(new ImageModel(blob,columnId));
                 }
                 while (cursor.moveToNext());
             }
@@ -142,12 +142,11 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
         return listofImages;
     }
 
-    public void DeleteImage(long imageId) {
-        int i = (int) imageId;
+    public void DeleteImage(String imageId) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(GalleryEntry.TABLE_NAME,
                 GalleryEntry._ID + "=?",
-                new String[]{String.valueOf(i)});
+                new String[]{imageId});
     }
 
 
