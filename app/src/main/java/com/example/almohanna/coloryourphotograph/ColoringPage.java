@@ -56,6 +56,7 @@ public class ColoringPage extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coloringpage);
+
         byte[] bytes = getIntent().getByteArrayExtra("Bitmap2");
         photo = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);;
         viewPhoto = (ImageView) findViewById(R.id.img);
