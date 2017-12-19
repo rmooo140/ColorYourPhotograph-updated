@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -55,8 +56,8 @@ public class ColoringPage extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coloringpage);
-
-        photo = this.getIntent().getParcelableExtra("Bitmap2");
+        byte[] bytes = getIntent().getByteArrayExtra("Bitmap2");
+        photo = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);;
         viewPhoto = (ImageView) findViewById(R.id.img);
         viewPhoto.setImageBitmap(photo);
 

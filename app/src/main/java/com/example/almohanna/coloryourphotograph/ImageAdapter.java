@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoDbHelper;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -57,7 +58,11 @@ public class ImageAdapter extends ArrayAdapter<byte[]> {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(context, ColoringPage.class);
-                intent.putExtra("Bitmap2", (Bitmap) v.getTag());
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                Bitmap bmp = (Bitmap) v.getTag();
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] bytes = stream.toByteArray();
+                intent.putExtra("Bitmap2", bytes);
                 context.startActivity(intent);
                 //Log.i("adapter", " numbers of images befor delete " + getCount());
 
