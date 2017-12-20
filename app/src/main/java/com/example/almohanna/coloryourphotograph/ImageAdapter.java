@@ -28,8 +28,6 @@ public class ImageAdapter extends ArrayAdapter<ImageModel> {
     Context context;
     ArrayList<ImageModel> images;
     int count;
-    Gallery display_adapter;
-    //ArrayList<byte[]> imageArry = new ArrayList<byte[]>();
     ColorYourPhotoDbHelper DbHelper = new ColorYourPhotoDbHelper(this.getContext());
 
     public ImageAdapter(Context context, List<ImageModel> images) {
