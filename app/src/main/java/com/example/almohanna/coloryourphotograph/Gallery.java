@@ -9,7 +9,6 @@ import android.widget.ListView;
 
 import com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoDbHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +16,6 @@ import java.util.List;
  */
 public class Gallery extends Activity {
 
-    // Bitmap photo;
     ColorYourPhotoDbHelper DbHelper = new ColorYourPhotoDbHelper(this);
     ImageAdapter adapter;
 

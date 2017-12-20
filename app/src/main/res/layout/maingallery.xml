@@ -29,7 +29,7 @@
             android:layout_marginTop="6dp"
             android:text="@string/imagesGallery"
             android:textColor="#ffffff"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/empty_list_hint"
+            android:textSize="20sp"
             android:layout_marginLeft="96dp"
             android:layout_marginRight="96dp"/>
 
