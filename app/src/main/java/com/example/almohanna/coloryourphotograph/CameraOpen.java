@@ -91,8 +91,6 @@ public class CameraOpen extends AppCompatActivity {
             String[] permissionRequ = {Manifest.permission.CAMERA};
             requestPermissions(permissionRequ, CAMERA_REQUEST);
         }
-
-
     }
 
     @Override
