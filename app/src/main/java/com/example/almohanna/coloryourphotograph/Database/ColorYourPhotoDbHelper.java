@@ -115,7 +115,6 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
 
     public List<ImageModel> retrieveAllImages() {
         SQLiteDatabase db = this.getWritableDatabase();
-        //String[] projection = {GalleryEntry.COLUMN_COLORING_PAGE,};
         Cursor cursor = db.query(
                 GalleryEntry.TABLE_NAME,
                 null,
@@ -159,32 +158,5 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
         // return count
         return cursor.getCount();
     }
-
-    /*
-
-    public Boolean DeleteImage(long imageId) {
-        int i = (int) imageId;
-        SQLiteDatabase database = this.getWritableDatabase();
-        if (i > 0) {
-            database.delete(GalleryEntry.TABLE_NAME, "_ID=?", new String[]{Integer.toString(i)});
-            return true;
-        }
-        return false;
-        /*
-        String selection = ColorYourPhotoContract.GalleryEntry._ID + "=?";
-        String[] selectionArgs = {String.valueOf(i)};
-        int rowsDeleted = database.delete(ColorYourPhotoContract.GalleryEntry.TABLE_NAME, selection, selectionArgs);
-        return rowsDeleted;
-
-    }
-
-
-
-    public int Dd(int imageId) {
-        SQLiteDatabase database = this.getWritableDatabase();
-        int r = database.delete(ColorYourPhotoContract.GalleryEntry.TABLE_NAME, ColorYourPhotoContract.GalleryEntry._ID + "=" + imageId, null);
-        return r;
-    }
-    */
 
 }

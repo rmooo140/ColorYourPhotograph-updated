@@ -82,8 +82,6 @@ public class CameraOpen extends AppCompatActivity {
 
         DbHelper = new ColorYourPhotoDbHelper(this);
 
-        //  Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        //  startActivityForResult(cameraIntent, CAMERA_REQUEST);
 
         if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             invoked();

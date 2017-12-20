@@ -47,8 +47,7 @@ public class Threshed extends Activity {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-               // Toast.makeText(Threshed.this, "Seek bar progress is :" + lowerSeekbarProgressChangedValue, Toast.LENGTH_SHORT).show();
-                //lower = lowerSeekBar.getProgress();
+
                 lower = lowerSeekbarProgressChangedValue;
             }
         });
@@ -66,9 +65,6 @@ public class Threshed extends Activity {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-               // Toast.makeText(Threshed.this, "Seek bar progress is :" + upperSeekbarProgressChangedValue,Toast.LENGTH_SHORT).show();
-                //upper = upperSeekBar.getProgress();
-
             }
         });
 

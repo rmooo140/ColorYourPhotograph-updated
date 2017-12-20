@@ -52,21 +52,11 @@ public class Gallery extends Activity {
 
 
     public void displayNew() {
-        //ArrayList<ImageModel> list1 = DbHelper.retrieveAllImages();
-        //ArrayList<byte[]> imageArryAfterDeleted = new ArrayList<byte[]>();
-        //
-        //for (int i = 0; i < list1.size(); i++) {
-        //
-        //    byte[] img = list1.get(i);
-        //    imageArryAfterDeleted.add(img);
-        //
-        //}
+
         ListView listView = (ListView) findViewById(R.id.list);
         View emptyView = findViewById(R.id.empty_view);
         listView.setEmptyView(emptyView);
-        //
-        //ImageAdapter a = new ImageAdapter(this, imageArryAfterDeleted);
-        //listView.setAdapter(a);
+
 
     }
 }

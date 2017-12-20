@@ -30,7 +30,6 @@ public class Levels extends Activity {
         easy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //difficultyLevel="Easy";
                 colorYourPhotoDbHelper.insertDifficultyLevel(difficultyLevel);
                 Log.i("level", "easy inseted to database successfully");
                 Intent homeIntent = new Intent(Levels.this, Home.class);

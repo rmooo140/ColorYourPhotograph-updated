@@ -29,7 +29,6 @@ public class ImageAdapter extends ArrayAdapter<ImageModel> {
     ArrayList<ImageModel> images;
     int count;
     Gallery display_adapter;
-    //ArrayList<byte[]> imageArry = new ArrayList<byte[]>();
     ColorYourPhotoDbHelper DbHelper = new ColorYourPhotoDbHelper(this.getContext());
 
     public ImageAdapter(Context context, List<ImageModel> images) {
@@ -48,8 +47,7 @@ public class ImageAdapter extends ArrayAdapter<ImageModel> {
 
         ImageView imgView = (ImageView) listItemView.findViewById(R.id.img);
         byte[] retrivedImage = images.get(position).getImage();
-        //    imgBitmap = BitmapFactory.decodeByteArray(retrivedImage, 0, retrivedImage.length);
-        //  imgView.setImageBitmap(imgBitmap);
+
         Bitmap tempBitmap = BitmapFactory.decodeByteArray(retrivedImage, 0, retrivedImage.length);
         imgView.setImageBitmap(tempBitmap);
         ImageView coloringPage = (ImageView) listItemView.findViewById(R.id.brush);
@@ -65,7 +63,6 @@ public class ImageAdapter extends ArrayAdapter<ImageModel> {
                 byte[] bytes = stream.toByteArray();
                 intent.putExtra("Bitmap2", bytes);
                 context.startActivity(intent);
-                //Log.i("adapter", " numbers of images befor delete " + getCount());
 
                 count = DbHelper.getImagesCount();
                 Log.i("adapter", " numbers of images befor delete " + count);
@@ -97,7 +94,7 @@ public class ImageAdapter extends ArrayAdapter<ImageModel> {
     }
 
 
-    private void showDeleteConfirmationDialog(final ImageModel imageModel){ //final byte[] position) {
+    private void showDeleteConfirmationDialog(final ImageModel imageModel){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("هل انت متاكد من عملية الحذف؟");
         builder.setTitle("حذف صورة!");
