@@ -80,8 +80,6 @@ public class CameraOpen extends AppCompatActivity {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);}
 
-        //  Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        //  startActivityForResult(cameraIntent, CAMERA_REQUEST);
 
 /*        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             invoked();
@@ -89,8 +87,6 @@ public class CameraOpen extends AppCompatActivity {
             String[] permissionRequ = {Manifest.permission.CAMERA};
             requestPermissions(permissionRequ, CAMERA_REQUEST);
         }
-
-
     }
 
     @Override
