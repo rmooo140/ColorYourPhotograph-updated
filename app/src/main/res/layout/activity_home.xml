@@ -38,7 +38,7 @@
             android:rotation="-15"
             android:src="@drawable/l"
             android:layout_above="@+id/createColoringPage"
-            android:layout_alignStart="@+id/logo" />
+            android:layout_alignEnd="@+id/coloring2" />
 
         <ImageButton
             android:id="@+id/coloring2"
@@ -65,9 +65,7 @@
             android:id="@+id/difficultyLevels"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/createColoringPage"
-            android:layout_marginBottom="13dp"
-            android:layout_toEndOf="@+id/diff2"
+            android:layout_marginBottom="15dp"
             android:background="#00ffffff"
             android:gravity="center"
             android:paddingLeft="10dp"
@@ -75,7 +73,9 @@
             android:text="@string/levelsOfDiffculty"
             android:textColor="#ffffff"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_above="@+id/createColoringPage"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:id="@+id/createColoringPage"
@@ -91,8 +91,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_alignBottom="@+id/coloring2"
-            android:layout_toEndOf="@+id/diff2"
-            android:layout_marginStart="22dp" />
+            android:layout_alignEnd="@+id/difficultyLevels" />
 
         <Button
             android:id="@+id/gallery"
