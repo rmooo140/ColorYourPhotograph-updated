@@ -210,7 +210,7 @@ public class ColoringPage extends Activity implements OnClickListener {
                             Bitmap bmp = view.getDrawingCache();
 
                             String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-                            File myDir = new File(root + "/saved_images");
+                            File myDir = new File(root + "/لون تصويرك");
                             myDir.mkdirs();
                             Random generator = new Random();
                             int n = 10000;
