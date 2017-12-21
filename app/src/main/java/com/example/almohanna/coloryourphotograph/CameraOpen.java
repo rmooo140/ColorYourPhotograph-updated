@@ -105,12 +105,10 @@ public class CameraOpen extends AppCompatActivity {
 
     }
 
-
     private void invoked() {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
-
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
@@ -188,24 +186,6 @@ public class CameraOpen extends AppCompatActivity {
         return imgBitmap;
     }
 
-    /**
-     * Mat inputMat = new Mat();
-     * Utils.bitmapToMat(photo, inputMat);
-     * <p>
-     * Mat result = new Mat(inputMat.size(), CvType.CV_8UC1);
-     * <p>
-     * Mat resultImg = Imgproc.Canny(inputMat, result, l, u);
-     * <p>
-     * // The result image should be black with white edges --> Flip colors
-     * Imgproc.adaptiveThreshold(resultImg, result , 255, Imgproc.ADAPTIVE_THRESH_MEAN_C, Imgproc.THRESH_BINARY, 5, 10);
-     * <p>
-     * // Convert back to a Bitmap
-     * Bitmap imgBitmap = Bitmap.createBitmap(result.cols(), result.rows(), Bitmap.Config.ARGB_8888);
-     * Utils.matToBitmap(result, imgBitmap);
-     * <p>
-     * return imgBitmap;
-     **/
-
     public Mat applyBilateralFilter(Mat src) {
         // convert 4 channel Mat to 3 channel Mat
         Imgproc.cvtColor(src, src, Imgproc.COLOR_RGBA2RGB);
@@ -222,7 +202,6 @@ public class CameraOpen extends AppCompatActivity {
     public int[] getCannyThresholds(Mat greyImg) {
 
         int[] thresholds = new int[2];
-
         // Read difficulty level
         Cursor cursor = DbHelper.readLevel();
 

@@ -6,18 +6,15 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -37,29 +34,22 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.UUID;
 
-import static android.content.ContentValues.TAG;
 import static com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoContract.ToolsEntry;
-
 
 public class ColoringPage extends Activity implements OnClickListener {
     Bitmap photo;
     ImageView viewPhoto;
     ColorYourPhotoDbHelper colorYourPhotoDbHelper = new ColorYourPhotoDbHelper(this);
     private DrawingView drawView;
-
     private ImageButton currPaint, drawBtn, eraseBtn, saveBtn;
     private float smallBrush, mediumBrush, largeBrush;
-    private SharedPreferences myPref;
-
+    //private SharedPreferences myPref;
     public ColorYourPhotoDbHelper DbHelper;
     public String name;
     public String color;
     public int size;
     private static final int PERMISSION_REQUEST_CODE = 1;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +57,9 @@ public class ColoringPage extends Activity implements OnClickListener {
         setContentView(R.layout.coloringpage);
 
         byte[] bytes = getIntent().getByteArrayExtra("Bitmap2");
-        photo = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);;
+        photo = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         viewPhoto = (ImageView) findViewById(R.id.img);
         viewPhoto.setImageBitmap(photo);
-
 
         // home button
         ImageButton home = (ImageButton) findViewById(R.id.home1);
@@ -95,13 +84,11 @@ public class ColoringPage extends Activity implements OnClickListener {
             }
         });
 
-
         drawView = (DrawingView) findViewById(R.id.drawing);
 
         LinearLayout paintLayout = (LinearLayout) findViewById(R.id.paint_colors);
         currPaint = (ImageButton) paintLayout.getChildAt(0);
         currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
-
 
         smallBrush = getResources().getInteger(R.integer.small_size);
         mediumBrush = getResources().getInteger(R.integer.medium_size);
@@ -115,16 +102,14 @@ public class ColoringPage extends Activity implements OnClickListener {
 
         saveBtn = (ImageButton) findViewById(R.id.save);
         saveBtn.setOnClickListener(this);
-
     }
-
 
     public void paintClicked(View view) {
         //use chosen color
         drawView.setErase(false);
         drawView.setBrushSize(drawView.getLastBrushSize());
         if (view != currPaint) {
-//update color
+            //update color
             ImageButton imgView = (ImageButton) view;
             String color = view.getTag().toString();
             drawView.setColor(color);
@@ -210,17 +195,15 @@ public class ColoringPage extends Activity implements OnClickListener {
         } else if (view.getId() == R.id.save) {
             //save drawing
 
-            if (Build.VERSION.SDK_INT >= 23)
-            {
-                if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
-                {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     AlertDialog.Builder saveDialog = new AlertDialog.Builder(this);
                     saveDialog.setTitle("حفظ الصورة");
                     saveDialog.setMessage("هل تود حفظ الصورة في جهازك؟");//"Save drawing to device Gallery?"
                     saveDialog.setPositiveButton("موافق", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             //save drawing
-                            boolean imgSaved=false;
+                            boolean imgSaved = false;
                             RelativeLayout view = (RelativeLayout) findViewById(R.id.ColoredPic);
                             view.setDrawingCacheEnabled(true);
                             view.buildDrawingCache();
@@ -238,7 +221,7 @@ public class ColoringPage extends Activity implements OnClickListener {
                                 file.delete();
                             try {
                                 FileOutputStream out = new FileOutputStream(file);
-                                imgSaved=bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                                imgSaved = bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
                                 out.flush();
                                 out.close();
                             } catch (Exception e) {
@@ -255,8 +238,6 @@ public class ColoringPage extends Activity implements OnClickListener {
                                             Log.i("ExternalStorage", "-> uri=" + uri);
                                         }
                                     });
-
-
 
 
                             if (imgSaved) {
@@ -279,25 +260,19 @@ public class ColoringPage extends Activity implements OnClickListener {
                     saveDialog.show();
 
 
-
-
                 } else {
                     String[] permissionRequ = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
                     requestPermissions(permissionRequ, PERMISSION_REQUEST_CODE);
                     //requestPermission(); // Code for permission
                 }
-            }
-            else
-            {
+            } else {
 
                 // Code for Below 23 API Oriented Device
                 // Do next code
             }
 
 
-
-
-                    }
+        }
 
     }
 
@@ -335,7 +310,7 @@ public class ColoringPage extends Activity implements OnClickListener {
     private void requestPermission() {
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(ColoringPage.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-           ///////
+            ///////
             Toast.makeText(ColoringPage.this, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
         } else {
             ActivityCompat.requestPermissions(ColoringPage.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
@@ -354,7 +329,7 @@ public class ColoringPage extends Activity implements OnClickListener {
                 saveDialog.setPositiveButton("موافق", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         //save drawing
-                        boolean imgSaved=false;
+                        boolean imgSaved = false;
                         RelativeLayout view = (RelativeLayout) findViewById(R.id.ColoredPic);
                         view.setDrawingCacheEnabled(true);
                         view.buildDrawingCache();
@@ -372,7 +347,7 @@ public class ColoringPage extends Activity implements OnClickListener {
                             file.delete();
                         try {
                             FileOutputStream out = new FileOutputStream(file);
-                            imgSaved=bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                            imgSaved = bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
                             out.flush();
                             out.close();
                         } catch (Exception e) {
@@ -389,8 +364,6 @@ public class ColoringPage extends Activity implements OnClickListener {
                                         Log.i("ExternalStorage", "-> uri=" + uri);
                                     }
                                 });
-
-
 
 
                         if (imgSaved) {

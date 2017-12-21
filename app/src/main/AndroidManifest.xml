@@ -14,24 +14,23 @@
 
         <activity android:name=".Home" android:configChanges="orientation|screenSize">
 
-        //android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".CameraOpen" />
+        <activity android:name=".CameraOpen" android:configChanges="orientation|screenSize"/>
 
-        <activity android:name=".Gallery" />
+        <activity android:name=".Gallery" android:configChanges="orientation|screenSize"/>
 
-        <activity android:name=".ColoringPage" />
+        <activity android:name=".ColoringPage" android:configChanges="orientation|screenSize" />
 
-        <activity android:name=".Confirmation"  />
+        <activity android:name=".Confirmation" android:configChanges="orientation|screenSize" />
 
-        <activity android:name=".Levels" />
+        <activity android:name=".Levels" android:configChanges="orientation|screenSize"/>
 
-        <activity android:name=".Threshed"  >
+        <activity android:name=".Threshed" android:configChanges="orientation|screenSize" >
         </activity>
     </application>
 

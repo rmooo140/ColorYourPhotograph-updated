@@ -49,8 +49,7 @@
             android:layout_marginBottom="13dp"
             android:background="#00ffffff"
             android:rotation="-10"
-            android:src="@drawable/c"
-            android:layout_toStartOf="@+id/createColoringPage" />
+            android:src="@drawable/c" />
 
         <ImageButton
             android:id="@+id/gallery2"
