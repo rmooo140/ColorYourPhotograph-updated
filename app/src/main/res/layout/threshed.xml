@@ -107,7 +107,9 @@
             android:layout_height="390dp"
             android:layout_above="@+id/textView5"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginBottom="12dp"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"/>
 
     </RelativeLayout>
 </LinearLayout>
