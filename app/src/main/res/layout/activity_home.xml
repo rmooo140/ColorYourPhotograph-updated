@@ -34,37 +34,39 @@
             android:id="@+id/diff2"
             android:layout_width="40dp"
             android:layout_height="38dp"
+            android:layout_above="@+id/createColoringPage"
+            android:layout_alignEnd="@+id/coloring2"
             android:background="#00ffffff"
             android:rotation="-15"
-            android:src="@drawable/l"
-            android:layout_above="@+id/createColoringPage"
-            android:layout_alignEnd="@+id/coloring2" />
+            android:src="@drawable/l" />
 
         <ImageButton
             android:id="@+id/coloring2"
             android:layout_width="30dp"
             android:layout_height="45dp"
+            android:layout_above="@+id/gallery2"
+            android:layout_alignStart="@+id/gallery2"
+            android:layout_marginBottom="13dp"
             android:background="#00ffffff"
             android:rotation="-10"
-            android:src="@drawable/c"
-            android:layout_marginBottom="13dp"
-            android:layout_above="@+id/gallery2"
-            android:layout_alignStart="@+id/gallery2" />
+            android:src="@drawable/c" />
 
         <ImageButton
             android:id="@+id/gallery2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/gallery"
+            android:layout_toStartOf="@+id/gallery"
             android:background="#00ffffff"
             android:src="@drawable/g"
-            android:textStyle="bold"
-            android:layout_alignTop="@+id/gallery"
-            android:layout_toStartOf="@+id/gallery" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/difficultyLevels"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/createColoringPage"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp"
             android:background="#00ffffff"
             android:gravity="center"
@@ -73,14 +75,14 @@
             android:text="@string/levelsOfDiffculty"
             android:textColor="#ffffff"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_above="@+id/createColoringPage"
-            android:layout_centerHorizontal="true" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/createColoringPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/coloring2"
+            android:layout_alignEnd="@+id/difficultyLevels"
             android:layout_marginBottom="17dp"
             android:background="#00ffffff"
             android:gravity="center"
@@ -89,22 +91,20 @@
             android:text="@string/createColoringPage"
             android:textColor="#ffffff"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_alignBottom="@+id/coloring2"
-            android:layout_alignEnd="@+id/difficultyLevels" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/createColoringPage"
+            android:layout_alignParentBottom="true"
             android:layout_marginBottom="45dp"
             android:background="#00ffffff"
             android:text="@string/gallary"
             android:textColor="#ffffff"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_alignParentBottom="true"
-            android:layout_alignEnd="@+id/createColoringPage" />
+            android:textStyle="bold" />
 
     </RelativeLayout>
 </LinearLayout>

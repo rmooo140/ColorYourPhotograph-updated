@@ -29,7 +29,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_toEndOf="@+id/drop"
             android:background="#00ffffff"
-            android:src="@drawable/brush" />
+            android:src="@drawable/brush"
+            android:layout_alignBottom="@+id/img" />
 
         <ImageButton
             android:id="@+id/drop"
