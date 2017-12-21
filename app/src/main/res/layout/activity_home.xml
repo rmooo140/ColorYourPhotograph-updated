@@ -34,11 +34,11 @@
             android:id="@+id/diff2"
             android:layout_width="40dp"
             android:layout_height="38dp"
-            android:layout_above="@+id/createColoringPage"
-            android:layout_alignEnd="@+id/coloring2"
             android:background="#00ffffff"
             android:rotation="-15"
-            android:src="@drawable/l" />
+            android:src="@drawable/l"
+            android:layout_above="@+id/createColoringPage"
+            android:layout_alignEnd="@+id/coloring2" />
 
         <ImageButton
             android:id="@+id/coloring2"
@@ -49,7 +49,8 @@
             android:layout_marginBottom="13dp"
             android:background="#00ffffff"
             android:rotation="-10"
-            android:src="@drawable/c" />
+            android:src="@drawable/c"
+            android:layout_toStartOf="@+id/createColoringPage" />
 
         <ImageButton
             android:id="@+id/gallery2"

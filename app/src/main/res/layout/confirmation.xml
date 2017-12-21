@@ -49,11 +49,12 @@
 
         <ImageView
             android:id="@+id/start_coloring"
-            android:layout_width="170dp"
+            android:layout_width="160dp"
             android:layout_height="50dp"
             android:src="@drawable/small_wood"
             android:layout_alignTop="@+id/back"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true" />
 
         <TextView
             android:id="@+id/textViewStart"
@@ -72,11 +73,11 @@
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="170dp"
+            android:layout_width="160dp"
             android:layout_height="47dp"
             android:src="@drawable/small_wood2"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true" />
 
         <TextView
             android:id="@+id/textViewBack"
