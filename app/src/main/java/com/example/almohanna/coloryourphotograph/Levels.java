@@ -10,9 +10,6 @@ import android.widget.ImageButton;
 
 import com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoDbHelper;
 
-/**
- * Created by user on 27/09/17.
- */
 public class Levels extends Activity {
 
     ColorYourPhotoDbHelper colorYourPhotoDbHelper = new ColorYourPhotoDbHelper(this);
@@ -40,7 +37,7 @@ public class Levels extends Activity {
         meduim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                difficultyLevel="Medium";
+                difficultyLevel = "Medium";
                 colorYourPhotoDbHelper.insertDifficultyLevel(difficultyLevel);
                 Log.i("level", "meduim inseted to database successfully");
                 Intent homeIntent = new Intent(Levels.this, Home.class);
@@ -51,7 +48,7 @@ public class Levels extends Activity {
         advance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                difficultyLevel="Advanced";
+                difficultyLevel = "Advanced";
                 colorYourPhotoDbHelper.insertDifficultyLevel(difficultyLevel);
                 Log.i("level", " advanced inseted to database successfully");
                 Intent homeIntent = new Intent(Levels.this, Home.class);

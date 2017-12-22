@@ -7,7 +7,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
@@ -32,10 +31,7 @@ import com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoDbHelper
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
 import java.util.Random;
-
-import static com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoContract.ToolsEntry;
 
 public class ColoringPage extends Activity implements OnClickListener {
     Bitmap photo;
@@ -44,11 +40,6 @@ public class ColoringPage extends Activity implements OnClickListener {
     private DrawingView drawView;
     private ImageButton currPaint, drawBtn, eraseBtn, saveBtn;
     private float smallBrush, mediumBrush, largeBrush;
-    //private SharedPreferences myPref;
-    public ColorYourPhotoDbHelper DbHelper;
-    public String name;
-    public String color;
-    public int size;
     private static final int PERMISSION_REQUEST_CODE = 1;
 
     @Override
@@ -228,7 +219,6 @@ public class ColoringPage extends Activity implements OnClickListener {
                                 e.printStackTrace();
                             }
 
-
                             // Tell the media scanner about the new file so that it is
                             // immediately available to the user.
                             MediaScannerConnection.scanFile(ColoringPage.this, new String[]{file.toString()}, null,
@@ -276,28 +266,6 @@ public class ColoringPage extends Activity implements OnClickListener {
 
     }
 
-
-    public ArrayList<String> tools() {
-        ArrayList<String> a = new ArrayList<String>();
-        // Read Tools
-        Cursor cursor = DbHelper.readTools();
-        int nameColumnIndex = cursor.getColumnIndex(ToolsEntry.COLUMN_NAME);
-        int colorColumnIndex = cursor.getColumnIndex(ToolsEntry.COLUMN_COLOR);
-        int sizeColumnIndex = cursor.getColumnIndex(ToolsEntry.COLUMN_SIZE);
-
-        name = cursor.getString(nameColumnIndex);
-        color = cursor.getString(colorColumnIndex);
-        size = cursor.getInt(sizeColumnIndex);
-        String s = String.valueOf(size);
-
-        a.add(name);
-        a.add(color);
-        a.add(s);
-
-        return a;
-    }
-
-
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(ColoringPage.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (result == PackageManager.PERMISSION_GRANTED) {
@@ -316,7 +284,6 @@ public class ColoringPage extends Activity implements OnClickListener {
             ActivityCompat.requestPermissions(ColoringPage.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
         }
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -353,7 +320,6 @@ public class ColoringPage extends Activity implements OnClickListener {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
 
                         // Tell the media scanner about the new file so that it is
                         // immediately available to the user.
@@ -392,6 +358,5 @@ public class ColoringPage extends Activity implements OnClickListener {
                 startActivity(homeIntent);
             }
         }
-
     }
 }

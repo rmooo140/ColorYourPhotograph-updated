@@ -146,7 +146,7 @@ public class CameraOpen extends AppCompatActivity {
 
         Mat resultImg = Imgproc.Canny(greyImg, edges, thresholds[0], thresholds[1]);
 
-        // The result image should be black with white edges --> Flip colors
+         // The result image should be black with white edges --> Flip colors
         Imgproc.adaptiveThreshold(resultImg, edges, 255, Imgproc.ADAPTIVE_THRESH_MEAN_C, Imgproc.THRESH_BINARY, 5, 10);
 
         // Convert back to a Bitmap
@@ -171,8 +171,6 @@ public class CameraOpen extends AppCompatActivity {
 
         // Detect edges using Canny Edge Detection
         final Mat edges = new Mat(greyImg.size(), CvType.CV_8UC1);
-
-        // int[] thresholds = getCannyThresholds(greyImg);
 
         Mat resultImg = Imgproc.Canny(greyImg, edges, upper, lower);
 

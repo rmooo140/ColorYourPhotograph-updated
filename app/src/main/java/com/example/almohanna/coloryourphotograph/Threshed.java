@@ -68,16 +68,6 @@ public class Threshed extends Activity {
             }
         });
 
-        // home button
-        ImageButton home = (ImageButton) findViewById(R.id.home1);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homeIntent = new Intent(Threshed.this, Home.class);
-                startActivity(homeIntent);
-            }
-        });
-
         ImageButton nextButton = (ImageButton) findViewById(R.id.next);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +78,16 @@ public class Threshed extends Activity {
                 intent.setClass(Threshed.this, Confirmation.class);
                 intent.putExtra("Bitmap", result);
                 startActivity(intent);
+            }
+        });
+
+        // home button
+        ImageButton home = (ImageButton) findViewById(R.id.home1);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homeIntent = new Intent(Threshed.this, Home.class);
+                startActivity(homeIntent);
             }
         });
     }//end create

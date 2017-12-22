@@ -11,9 +11,6 @@ import com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoDbHelper
 
 import java.util.List;
 
-/**
- * Created by user on 27/09/17.
- */
 public class Gallery extends Activity {
 
     ColorYourPhotoDbHelper DbHelper = new ColorYourPhotoDbHelper(this);
@@ -45,16 +42,6 @@ public class Gallery extends Activity {
 
         adapter = new ImageAdapter(this, list);
         listView.setAdapter(adapter);
-
-    }
-
-
-    public void displayNew() {
-
-        ListView listView = (ListView) findViewById(R.id.list);
-        View emptyView = findViewById(R.id.empty_view);
-        listView.setEmptyView(emptyView);
-
 
     }
 }

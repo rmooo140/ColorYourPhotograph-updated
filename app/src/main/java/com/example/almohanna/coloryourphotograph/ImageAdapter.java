@@ -19,16 +19,11 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Reem on 23-Nov-17.
- */
-
 public class ImageAdapter extends ArrayAdapter<ImageModel> {
 
     Context context;
     ArrayList<ImageModel> images;
     int count;
-    Gallery display_adapter;
     ColorYourPhotoDbHelper DbHelper = new ColorYourPhotoDbHelper(this.getContext());
 
     public ImageAdapter(Context context, List<ImageModel> images) {
@@ -94,7 +89,7 @@ public class ImageAdapter extends ArrayAdapter<ImageModel> {
     }
 
 
-    private void showDeleteConfirmationDialog(final ImageModel imageModel){
+    private void showDeleteConfirmationDialog(final ImageModel imageModel) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("هل انت متاكد من عملية الحذف؟");
         builder.setTitle("حذف صورة!");
