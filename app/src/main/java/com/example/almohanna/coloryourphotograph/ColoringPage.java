@@ -353,7 +353,6 @@ public class ColoringPage extends Activity implements OnClickListener {
 
 
             } else {
-                Toast.makeText(this, "قم بالسماح بالوصول إلى ملفات الجهاز  لتستطيع حقظ صورة", Toast.LENGTH_LONG).show();
                 Intent homeIntent = new Intent(ColoringPage.this, Home.class);
                 startActivity(homeIntent);
             }

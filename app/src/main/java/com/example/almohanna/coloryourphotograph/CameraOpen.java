@@ -146,7 +146,9 @@ public class CameraOpen extends AppCompatActivity {
 
         Mat resultImg = Imgproc.Canny(greyImg, edges, thresholds[0], thresholds[1]);
 
-         // The result image should be black with white edges --> Flip colors
+        // The result image should be black with white edges --> Flip colors
+        //Imgproc.threshold(resultImg, edges, 1, 255, Imgproc.THRESH_BINARY_INV);
+
         Imgproc.adaptiveThreshold(resultImg, edges, 255, Imgproc.ADAPTIVE_THRESH_MEAN_C, Imgproc.THRESH_BINARY, 5, 10);
 
         // Convert back to a Bitmap
@@ -158,42 +160,28 @@ public class CameraOpen extends AppCompatActivity {
 
     //applay canny for specific thresholds values from seekbars
     public Bitmap CannyEdgeDetectionForSpecificThresholdsValues(Bitmap img, int lower, int upper) {
-        // Convert to an array
         inputMat = new Mat();
         Utils.bitmapToMat(img, inputMat);
-
-        // Smooth the image by applying Bilateral Filtering
         Mat BilateralFilterImg = applyBilateralFilter(inputMat);
-
-        // Convert it to a greyscale image
         final Mat greyImg = new Mat(BilateralFilterImg.size(), CvType.CV_8UC1);
         Imgproc.cvtColor(BilateralFilterImg, greyImg, Imgproc.COLOR_RGB2GRAY);
-
-        // Detect edges using Canny Edge Detection
         final Mat edges = new Mat(greyImg.size(), CvType.CV_8UC1);
 
         Mat resultImg = Imgproc.Canny(greyImg, edges, upper, lower);
-
-        // The result image should be black with white edges --> Flip colors
+        //Imgproc.threshold(resultImg, edges, 1, 255, Imgproc.THRESH_BINARY_INV);
         Imgproc.adaptiveThreshold(resultImg, edges, 255, Imgproc.ADAPTIVE_THRESH_MEAN_C, Imgproc.THRESH_BINARY, 5, 10);
-
-        // Convert back to a Bitmap
         imgBitmap = Bitmap.createBitmap(edges.cols(), edges.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(edges, imgBitmap);
-
         return imgBitmap;
     }
 
     public Mat applyBilateralFilter(Mat src) {
         // convert 4 channel Mat to 3 channel Mat
         Imgproc.cvtColor(src, src, Imgproc.COLOR_RGBA2RGB);
-
         // create an empty matrix for the result
         Mat dst = new Mat();
-
         // apply bilateral filter
         Imgproc.bilateralFilter(src, dst, 5, 80, 80);
-
         return dst;
     }
 
@@ -209,7 +197,6 @@ public class CameraOpen extends AppCompatActivity {
             difficultyLevel = cursor.getString(levelColumnIndex);
             Log.v(TAG, "level: " + difficultyLevel);
         }
-
         // Compute the mean and standard deviation for the image
         MatOfDouble meanMat = new MatOfDouble();
         MatOfDouble stdMat = new MatOfDouble();
@@ -233,9 +220,9 @@ public class CameraOpen extends AppCompatActivity {
                 break;
             case "Advanced":
                 // the lower thresold
-                thresholds[0] = (int) (mean);
+                thresholds[0] = max(0, (int) (mean - 2.0 * std));
                 // the upper thresold
-                thresholds[1] = min(255, (int) (mean + 2.0 * std));
+                thresholds[1] = (int) (mean);
                 break;
         }
         return thresholds;

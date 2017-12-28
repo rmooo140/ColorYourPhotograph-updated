@@ -2,17 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.almohanna.coloryourphotograph">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/name"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Home" android:configChanges="orientation|screenSize">
+        <activity
+            android:name=".Home"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,23 +22,42 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CameraOpen" android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name=".CameraOpen"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".Gallery" android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name=".Gallery"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".ColoringPage" android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".ColoringPage"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".Confirmation" android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".Confirmation"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".Levels" android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name=".Levels"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".Threshed" android:configChanges="orientation|screenSize" >
-        </activity>
+        <activity
+            android:name=".Threshed"
+            android:screenOrientation="portrait"></activity>
     </application>
 
-    <uses-feature android:name="android.hardware.camera" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera.front" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera.front.autofocus" android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false" />
 
 </manifest>

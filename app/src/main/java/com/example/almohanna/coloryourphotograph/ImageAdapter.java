@@ -45,6 +45,7 @@ public class ImageAdapter extends ArrayAdapter<ImageModel> {
 
         Bitmap tempBitmap = BitmapFactory.decodeByteArray(retrivedImage, 0, retrivedImage.length);
         imgView.setImageBitmap(tempBitmap);
+
         ImageView coloringPage = (ImageView) listItemView.findViewById(R.id.brush);
         coloringPage.setTag(tempBitmap);
         coloringPage.setOnClickListener(new View.OnClickListener() {

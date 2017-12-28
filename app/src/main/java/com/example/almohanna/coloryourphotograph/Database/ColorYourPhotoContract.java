@@ -9,6 +9,7 @@ public class ColorYourPhotoContract {
 
     public static final class DifficultyEntry implements BaseColumns {
         public final static String TABLE_NAME = "Difficulty";
+        public final static String _ID = BaseColumns._ID;
         public final static String COLUMN_LEVEL = "level";
 
     }

@@ -20,7 +20,7 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = ColorYourPhotoDbHelper.class.getSimpleName();
 
     private static final String DATABASE_NAME = "ColorYourPhoto.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     private ArrayList<ImageModel> listofImages = new ArrayList<>();
 
     public ColorYourPhotoDbHelper(Context context) {
@@ -29,7 +29,8 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
     }
 
     String CREATE_TABLE_Difficulty = "CREATE TABLE IF NOT EXISTS " + DifficultyEntry.TABLE_NAME +
-            " ( " + DifficultyEntry.COLUMN_LEVEL + " TEXT NOT NULL " + " ); ";
+            " ( " + DifficultyEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + DifficultyEntry.COLUMN_LEVEL + " TEXT NOT NULL DEFAULT Easy " + " ); ";
 
     String CREATE_TABLE_Gallery = "CREATE TABLE IF NOT EXISTS " + GalleryEntry.TABLE_NAME +
             " ( " + GalleryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -55,6 +56,7 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
         db.insert(DifficultyEntry.TABLE_NAME, null, values);
     }
 
+
     public void insertImage(byte[] image) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -62,13 +64,24 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
         values.put(GalleryEntry.COLUMN_COLORING_PAGE, image);
         db.insert(GalleryEntry.TABLE_NAME, null, values);
     }
+/*
+    public void updateLevel (String  id , String level) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DifficultyEntry.COLUMN_LEVEL, level);
+        String selection = DifficultyEntry._ID + "=?";
+        String[] selectionArgs = new String[] { String.valueOf(id) };
+
+        db.update(DifficultyEntry.TABLE_NAME, values,selection,selectionArgs);
+    }
+    */
 
     public Cursor readLevel() {
         SQLiteDatabase db = getReadableDatabase();
-        String[] projection = {DifficultyEntry.COLUMN_LEVEL,};
+        //String[] projection = {DifficultyEntry.COLUMN_LEVEL,};
         Cursor cursor = db.query(
                 DifficultyEntry.TABLE_NAME,
-                projection,
+                null,
                 null,
                 null,
                 null,
@@ -113,13 +126,11 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
                 new String[]{imageId});
     }
 
-
     // Getting images Count
     public int getImagesCount() {
         String countQuery = "SELECT  * FROM " + GalleryEntry.TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-
         // return count
         return cursor.getCount();
     }

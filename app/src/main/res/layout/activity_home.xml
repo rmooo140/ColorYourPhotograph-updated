@@ -32,24 +32,24 @@
 
         <ImageButton
             android:id="@+id/diff2"
-            android:layout_width="40dp"
+            android:layout_width="38dp"
             android:layout_height="38dp"
             android:background="#00ffffff"
             android:rotation="-15"
             android:src="@drawable/l"
             android:layout_above="@+id/createColoringPage"
-            android:layout_alignEnd="@+id/coloring2" />
+            android:layout_toStartOf="@+id/difficultyLevels" />
 
         <ImageButton
             android:id="@+id/coloring2"
-            android:layout_width="30dp"
-            android:layout_height="45dp"
-            android:layout_above="@+id/gallery2"
-            android:layout_alignStart="@+id/gallery2"
-            android:layout_marginBottom="13dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:background="#00ffffff"
             android:rotation="-10"
-            android:src="@drawable/c" />
+            android:src="@drawable/c"
+            android:layout_marginBottom="14dp"
+            android:layout_above="@+id/gallery2"
+            android:layout_toStartOf="@+id/createColoringPage" />
 
         <ImageButton
             android:id="@+id/gallery2"
@@ -81,9 +81,7 @@
             android:id="@+id/createColoringPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/coloring2"
-            android:layout_alignEnd="@+id/difficultyLevels"
-            android:layout_marginBottom="17dp"
+            android:layout_marginBottom="25dp"
             android:background="#00ffffff"
             android:gravity="center"
             android:paddingBottom="5dp"
@@ -91,7 +89,9 @@
             android:text="@string/createColoringPage"
             android:textColor="#ffffff"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_above="@+id/gallery2"
+            android:layout_alignEnd="@+id/difficultyLevels" />
 
         <Button
             android:id="@+id/gallery"
