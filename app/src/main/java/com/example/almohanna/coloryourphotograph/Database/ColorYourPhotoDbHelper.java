@@ -49,14 +49,6 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    /*public void insertDifficultyLevel(String level) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(DifficultyEntry.COLUMN_LEVEL, level);
-        db.insert(DifficultyEntry.TABLE_NAME, null, values);
-    }
-*/
-
     public void insertImage(byte[] image) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -65,18 +57,7 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
         db.insert(GalleryEntry.TABLE_NAME, null, values);
     }
 
-    /*
-        public void updateLevel (String  id , String level) {
-            SQLiteDatabase db = getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put(DifficultyEntry.COLUMN_LEVEL, level);
-            String selection = DifficultyEntry._ID + "=?";
-            String[] selectionArgs = new String[] { String.valueOf(id) };
-
-            db.update(DifficultyEntry.TABLE_NAME, values,selection,selectionArgs);
-        }
-        */
-    public void updateLevel( String level ) {
+    public void updateLevel(String level) {
         String id = "1";
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
