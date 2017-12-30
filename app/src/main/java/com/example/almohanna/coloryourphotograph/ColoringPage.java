@@ -69,7 +69,7 @@ public class ColoringPage extends Activity implements OnClickListener {
                 byte imageInByte[] = stream.toByteArray();
                 colorYourPhotoDbHelper.insertImage(imageInByte);
                 Log.i("images", "inserted to database successfully");
-                Toast.makeText(getApplicationContext(), "تم حفظ الصورة في معرض الصور", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "تم حفظ الصورة في معرض الصور", Toast.LENGTH_SHORT).show();
                 Intent homeIntent = new Intent(ColoringPage.this, Home.class);
                 startActivity(homeIntent);
             }

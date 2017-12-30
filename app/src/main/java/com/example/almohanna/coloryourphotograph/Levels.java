@@ -30,7 +30,7 @@ public class Levels extends Activity {
             public void onClick(View v) {
                 colorYourPhotoDbHelper.updateLevel(difficultyLevel);
                 Log.i("level", "level updated successfully to " + difficultyLevel);
-                Toast.makeText(getApplicationContext(), "تم اختيار مستوى الصعوبة بنجاح", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "تم اختيار مستوى الصعوبة بنجاح", Toast.LENGTH_SHORT).show();
                 Intent homeIntent = new Intent(Levels.this, Home.class);
                 startActivity(homeIntent);
             }
@@ -42,7 +42,7 @@ public class Levels extends Activity {
                 difficultyLevel = "Medium";
                 colorYourPhotoDbHelper.updateLevel(difficultyLevel);
                 Log.i("level", "level updated successfully to " + difficultyLevel);
-                Toast.makeText(getApplicationContext(), "تم اختيار مستوى الصعوبة بنجاح", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "تم اختيار مستوى الصعوبة بنجاح", Toast.LENGTH_SHORT).show();
                 Intent homeIntent = new Intent(Levels.this, Home.class);
                 startActivity(homeIntent);
             }
@@ -54,7 +54,7 @@ public class Levels extends Activity {
                 difficultyLevel = "Advanced";
                 colorYourPhotoDbHelper.updateLevel(difficultyLevel);
                 Log.i("level", "level updated successfully to " + difficultyLevel);
-                Toast.makeText(getApplicationContext(), "تم اختيار مستوى الصعوبة بنجاح", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "تم اختيار مستوى الصعوبة بنجاح", Toast.LENGTH_SHORT).show();
                 Intent homeIntent = new Intent(Levels.this, Home.class);
                 startActivity(homeIntent);
             }
