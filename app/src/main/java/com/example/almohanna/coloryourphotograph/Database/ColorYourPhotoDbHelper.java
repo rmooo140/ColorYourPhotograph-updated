@@ -49,13 +49,13 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void insertDifficultyLevel(String level) {
+    /*public void insertDifficultyLevel(String level) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DifficultyEntry.COLUMN_LEVEL, level);
         db.insert(DifficultyEntry.TABLE_NAME, null, values);
     }
-
+*/
 
     public void insertImage(byte[] image) {
         SQLiteDatabase db = getWritableDatabase();
@@ -64,24 +64,32 @@ public class ColorYourPhotoDbHelper extends SQLiteOpenHelper {
         values.put(GalleryEntry.COLUMN_COLORING_PAGE, image);
         db.insert(GalleryEntry.TABLE_NAME, null, values);
     }
-/*
-    public void updateLevel (String  id , String level) {
-        SQLiteDatabase db = getWritableDatabase();
+
+    /*
+        public void updateLevel (String  id , String level) {
+            SQLiteDatabase db = getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(DifficultyEntry.COLUMN_LEVEL, level);
+            String selection = DifficultyEntry._ID + "=?";
+            String[] selectionArgs = new String[] { String.valueOf(id) };
+
+            db.update(DifficultyEntry.TABLE_NAME, values,selection,selectionArgs);
+        }
+        */
+    public void updateLevel( String level ) {
+        String id = "1";
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DifficultyEntry.COLUMN_LEVEL, level);
-        String selection = DifficultyEntry._ID + "=?";
-        String[] selectionArgs = new String[] { String.valueOf(id) };
-
-        db.update(DifficultyEntry.TABLE_NAME, values,selection,selectionArgs);
+        db.update(DifficultyEntry.TABLE_NAME, values, DifficultyEntry._ID + " = ? ", new String[]{String.valueOf(id)});
     }
-    */
 
     public Cursor readLevel() {
         SQLiteDatabase db = getReadableDatabase();
-        //String[] projection = {DifficultyEntry.COLUMN_LEVEL,};
+        String[] projection = {DifficultyEntry.COLUMN_LEVEL,};
         Cursor cursor = db.query(
                 DifficultyEntry.TABLE_NAME,
-                null,
+                projection,
                 null,
                 null,
                 null,

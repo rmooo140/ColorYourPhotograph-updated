@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoDbHelper;
 
@@ -27,8 +28,9 @@ public class Levels extends Activity {
         easy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                colorYourPhotoDbHelper.insertDifficultyLevel(difficultyLevel);
-                Log.i("level", "easy inseted to database successfully");
+                colorYourPhotoDbHelper.updateLevel(difficultyLevel);
+                Log.i("level", "level updated successfully to " + difficultyLevel);
+                Toast.makeText(getApplicationContext(), "تم اختيار مستوى الصعوبة بنجاح", Toast.LENGTH_LONG).show();
                 Intent homeIntent = new Intent(Levels.this, Home.class);
                 startActivity(homeIntent);
             }
@@ -38,8 +40,9 @@ public class Levels extends Activity {
             @Override
             public void onClick(View v) {
                 difficultyLevel = "Medium";
-                colorYourPhotoDbHelper.insertDifficultyLevel(difficultyLevel);
-                Log.i("level", "meduim inseted to database successfully");
+                colorYourPhotoDbHelper.updateLevel(difficultyLevel);
+                Log.i("level", "level updated successfully to " + difficultyLevel);
+                Toast.makeText(getApplicationContext(), "تم اختيار مستوى الصعوبة بنجاح", Toast.LENGTH_LONG).show();
                 Intent homeIntent = new Intent(Levels.this, Home.class);
                 startActivity(homeIntent);
             }
@@ -49,8 +52,9 @@ public class Levels extends Activity {
             @Override
             public void onClick(View v) {
                 difficultyLevel = "Advanced";
-                colorYourPhotoDbHelper.insertDifficultyLevel(difficultyLevel);
-                Log.i("level", " advanced inseted to database successfully");
+                colorYourPhotoDbHelper.updateLevel(difficultyLevel);
+                Log.i("level", "level updated successfully to " + difficultyLevel);
+                Toast.makeText(getApplicationContext(), "تم اختيار مستوى الصعوبة بنجاح", Toast.LENGTH_LONG).show();
                 Intent homeIntent = new Intent(Levels.this, Home.class);
                 startActivity(homeIntent);
             }
@@ -65,5 +69,6 @@ public class Levels extends Activity {
                 startActivity(homeIntent);
             }
         });
+
     }
 }

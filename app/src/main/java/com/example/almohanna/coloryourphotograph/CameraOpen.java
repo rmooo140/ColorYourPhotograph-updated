@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoContract;
 import com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoDbHelper;
 
 import org.opencv.android.BaseLoaderCallback;
@@ -25,7 +26,6 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
 import org.opencv.imgproc.Imgproc;
 
-import static com.example.almohanna.coloryourphotograph.Database.ColorYourPhotoContract.DifficultyEntry;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
@@ -147,8 +147,6 @@ public class CameraOpen extends AppCompatActivity {
         Mat resultImg = Imgproc.Canny(greyImg, edges, thresholds[0], thresholds[1]);
 
         // The result image should be black with white edges --> Flip colors
-        //Imgproc.threshold(resultImg, edges, 1, 255, Imgproc.THRESH_BINARY_INV);
-
         Imgproc.adaptiveThreshold(resultImg, edges, 255, Imgproc.ADAPTIVE_THRESH_MEAN_C, Imgproc.THRESH_BINARY, 5, 10);
 
         // Convert back to a Bitmap
@@ -166,9 +164,7 @@ public class CameraOpen extends AppCompatActivity {
         final Mat greyImg = new Mat(BilateralFilterImg.size(), CvType.CV_8UC1);
         Imgproc.cvtColor(BilateralFilterImg, greyImg, Imgproc.COLOR_RGB2GRAY);
         final Mat edges = new Mat(greyImg.size(), CvType.CV_8UC1);
-
         Mat resultImg = Imgproc.Canny(greyImg, edges, upper, lower);
-        //Imgproc.threshold(resultImg, edges, 1, 255, Imgproc.THRESH_BINARY_INV);
         Imgproc.adaptiveThreshold(resultImg, edges, 255, Imgproc.ADAPTIVE_THRESH_MEAN_C, Imgproc.THRESH_BINARY, 5, 10);
         imgBitmap = Bitmap.createBitmap(edges.cols(), edges.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(edges, imgBitmap);
@@ -190,13 +186,12 @@ public class CameraOpen extends AppCompatActivity {
         int[] thresholds = new int[2];
         // Read difficulty level
         Cursor cursor = DbHelper.readLevel();
-
-        int levelColumnIndex = cursor.getColumnIndex(DifficultyEntry.COLUMN_LEVEL);
-        // Iterate through all the returned rows in the cursor
-        while (cursor.moveToNext()) {
+        int levelColumnIndex = cursor.getColumnIndex(ColorYourPhotoContract.DifficultyEntry.COLUMN_LEVEL);
+        if (cursor.moveToFirst()) {
             difficultyLevel = cursor.getString(levelColumnIndex);
-            Log.v(TAG, "level: " + difficultyLevel);
+            Log.v(TAG, "level updated to " + difficultyLevel);
         }
+
         // Compute the mean and standard deviation for the image
         MatOfDouble meanMat = new MatOfDouble();
         MatOfDouble stdMat = new MatOfDouble();

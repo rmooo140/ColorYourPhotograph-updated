@@ -7,16 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
 import java.io.ByteArrayOutputStream;
 
 public class Confirmation extends Activity {
     static Bitmap photo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirmation);
 
-         photo = this.getIntent().getParcelableExtra("Bitmap");
+        photo = this.getIntent().getParcelableExtra("Bitmap");
         ImageView viewPhoto = (ImageView) findViewById(R.id.img);
         viewPhoto.setImageBitmap(photo);
 
@@ -26,11 +28,11 @@ public class Confirmation extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(Confirmation.this,ColoringPage.class);
+                intent.setClass(Confirmation.this, ColoringPage.class);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] bytes = stream.toByteArray();
-                intent.putExtra("Bitmap2",bytes);
+                intent.putExtra("Bitmap2", bytes);
                 startActivity(intent);
 
             }

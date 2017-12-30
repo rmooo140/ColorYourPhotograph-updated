@@ -41,6 +41,7 @@ public class Threshed extends Activity {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 lowerSeekbarProgressChangedValue = progress;
+                lower = lowerSeekbarProgressChangedValue;
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -48,7 +49,6 @@ public class Threshed extends Activity {
 
             public void onStopTrackingTouch(SeekBar seekBar) {
 
-                lower = lowerSeekbarProgressChangedValue;
             }
         });
 
