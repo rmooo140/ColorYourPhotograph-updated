@@ -353,8 +353,8 @@ public class ColoringPage extends Activity implements OnClickListener {
 
 
             } else {
-                Intent homeIntent = new Intent(ColoringPage.this, Home.class);
-                startActivity(homeIntent);
+                Toast.makeText(this, "نعتذر حصل خطأ في حفظ الصورة قم بالسماح بالوصول لمعرض الصور ", Toast.LENGTH_LONG).show();
+
             }
         }
     }
